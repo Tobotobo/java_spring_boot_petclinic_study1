@@ -1,0 +1,41 @@
+// Dev Container metadata reference
+// https://containers.dev/implementors/json_reference/
+{
+  "name": "dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu26.04",
+  "features": {
+    // Available Dev Container Features
+    // https://containers.dev/features 
+    
+    // https://github.com/devcontainers/features/blob/main/src/java/devcontainer-feature.json
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "25",
+      "jdkDistro": "open"
+    }
+  },
+  "containerEnv": {
+    "LANG": "ja_JP.UTF-8",
+    "LANGUAGE": "ja_JP:ja",
+    "TZ": "Asia/Tokyo"
+  },
+  "remoteEnv": {
+    "LANG": "${containerEnv:LANG}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot"
+      ],
+      "settings": {
+        "remote.restoreForwardedPorts": false,
+        "remote.autoForwardPorts": false,
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.debug.settings.hotCodeReplace": "auto",
+        "java.configuration.updateBuildConfiguration": "automatic"
+      }
+    }
+  },
+  "onCreateCommand": "bash .devcontainer/onCreateCommand.sh",
+  "appPort": [ "8080:8080" ]
+}
